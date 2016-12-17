@@ -2,3 +2,27 @@
 
 # Milk Carton
 Gulp tasks for every project
+
+## Install
+```
+$ npm install --save-dev milk-carton
+```
+
+## Usage
+In order to use the gulp tasks, create a `gulpfile.js` with:
+
+```javascript
+require('milk-carton')();
+```
+
+or using `gulpfile.babel.js` with:
+```javascript
+import milk from 'milk-carton';
+milk();
+```
+
+## Development
+To build use:
+```
+$ babel -d dist/ src/git st
+```
