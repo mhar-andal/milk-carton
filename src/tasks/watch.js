@@ -16,5 +16,6 @@ const watchFiles = [
 
 // default task
 export default function(gulp, config) {
-  return gulp.watch(watchFiles, ['test']);
+  // return gulp.watch(watchFiles, ['test']);
+  return gulp.watch(watchFiles, ['build']);
 };

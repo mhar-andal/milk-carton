@@ -6,6 +6,6 @@ export let log = function(...msg) {
 };
 
 // Generic error log
-export let error = function(...msg) {
+export let logError = function(...msg) {
   gutil.log(gutil.colors.red('[Milk Carton]'), ...msg);
 };

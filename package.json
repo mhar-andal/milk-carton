@@ -13,7 +13,8 @@
     "url": "https://github.com/americademy/milk-carton/issues"
   },
   "scripts": {
-    "compile": "babel -d lib/ src/",
+    "compile": "babel -d dist/ src/",
+    "build": "babel -d dist/ src/",
     "prepublish": "npm run compile"
   },
   "dependencies": {
@@ -30,6 +31,7 @@
     "gulp": "^3.9.0",
     "gulp-babel": "^6.1.1",
     "gulp-connect": "^5.0.0",
+    "gulp-documentation": "^3.1.0",
     "gulp-eslint": "^1.1.1",
     "gulp-filter": "^3.0.0",
     "gulp-istanbul": "^0.10.3",

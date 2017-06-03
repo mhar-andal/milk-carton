@@ -21,11 +21,22 @@ export default {
     build: 'dist',
 
     // Folder for tests
-    tests: 'test'
+    tests: 'test',
+
+    // start with the setup file, and exclude any test dependencies (which start with an underscore)
+    testFiles: [
+      './test/setup/index.js',
+      '!./**/_*.js',
+      './test/unit/**/*.js',
+      './test/acceptance/**/*.js'
+    ]
   },
 
+  // webpack modules directory
+  modulesDirectories: null,
+
   // webpack library type
-  libraryTarget: 'umd',
+  libraryTarget: 'amd',
 
   // test reporter
   reporter: 'dot',

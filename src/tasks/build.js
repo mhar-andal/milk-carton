@@ -6,33 +6,97 @@ import rename from 'gulp-rename';
 import uglify from 'gulp-uglify';
 import sourcemaps from 'gulp-sourcemaps';
 import webpackStream from 'webpack-stream';
+import {logError, error} from '../utility';
 
 // dependencies will be run prior to the default task
-export let dependencies = ['clean'];
+export let dependencies = [];
 
 // default task
 export default function(gulp, config) {
 
+  // Choose a different version of webpack
+  // otherwise null will use included version
+  let wpVersion = config.wpVersion || null;
+
+  // choose the destination folder
   let destinationFolder = path.dirname(config.mainFile);
 
-  return gulp.src(path.join(config.paths.src, config.entryFileName + '.js'))
-    .pipe(plumber())
-    .pipe(webpackStream({
-      output: {
-        filename: config.exportFileName + '.js',
-        libraryTarget: config.libraryTarget,
-        library: config.mainVarName
-      },
-      module: {
-        loaders: [{
-          test: /\.js$/,
-          exclude: /(node_modules|bower_components)/,
-          loader: 'babel-loader' }
-        ]
-      },
-      devtool: 'source-map'
-    }))
+  // determine the initial source file
+  let sourceFile = path.join(config.paths.src, config.entryFileName + '.js');
+
+  // webpack options
+  let options = {
+
+    output: {
+
+      // output paths
+      path: `/${config.paths.build}/`,
+      publicPath: `/${config.paths.build}/`,
+
+      // destination file name
+      filename: config.exportFileName + '.js',
+
+      // configure the output library type
+      libraryTarget: config.libraryTarget,
+
+      // configure the output variable
+      library: config.mainVarName
+
+    },
+
+    module: {
+      loaders: [{
+
+        // all javascript files
+        test: /\.js$/,
+
+        // don't include node modules or bower components
+        // exclude: /(node_modules)/,
+
+        // use babel to compile for all js files
+        loader: 'babel-loader'
+
+      }, {
+
+        // all json files for configuration
+        test: /\.json$/,
+
+        // exclude node modules or bower components
+        exclude: /(node_modules|bower_components)/,
+
+        // https://github.com/webpack-contrib/json-loader
+        loader: 'json-loader'
+
+      }]
+    },
+
+    resolve: {
+      modulesDirectories: config.modulesDirectories
+    },
+
+    // enable source-maps
+    devtool: 'source-map'
+
+  };
+
+  // plumbing error
+  function errorHandler(error, stats) {
+    logError(error);
+    this.emit('end');
+  };
+
+  return gulp.src(sourceFile)
+
+    // plumber
+    .pipe(plumber({errorHandler}))
+
+    // stream webpack build
+    .pipe(webpackStream(options, wpVersion))
+
+    // add compiled output to the destination folder
     .pipe(gulp.dest(destinationFolder))
+
+    // create minified and map sources
     .pipe(filter(['*', '!**/*.js.map']))
     .pipe(rename(config.exportFileName + '.min.js'))
     .pipe(sourcemaps.init({ loadMaps: true }))

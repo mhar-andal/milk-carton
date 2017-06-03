@@ -1,6 +1,7 @@
 import plumber from 'gulp-plumber';
 import eslint from 'gulp-eslint';
 import jscs from 'gulp-jscs';
+import {logError} from '../utility';
 
 // dependencies will be run prior to the default task
 export let dependencies = [];
@@ -23,5 +24,5 @@ export default function(gulp, config) {
     .pipe(jscs())
     .pipe(jscs.reporter())
     .pipe(jscs.reporter('fail'))
-    .on('error', onError);
+    .on('error', logError);
 };

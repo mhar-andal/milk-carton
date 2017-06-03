@@ -24,5 +24,5 @@ milk();
 ## Development
 To build use:
 ```
-$ babel -d dist/ src/git st
+$ npm run compile
 ```
