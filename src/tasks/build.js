@@ -40,7 +40,10 @@ export default function(gulp, config) {
       libraryTarget: config.libraryTarget,
 
       // configure the output variable
-      library: config.mainVarName
+      library: config.mainVarName,
+
+      // prefix module filename to avoid duplicates among many of our projects
+      devtoolModuleFilenameTemplate: `webpack:///${config.mainVarName}[resource-path]`
 
     },
 
