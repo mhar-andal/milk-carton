@@ -47,7 +47,7 @@ exports.default = function (gulp, config) {
         test: /\.js$/,
 
         // don't include node modules or bower components
-        // exclude: /(node_modules)/,
+        exclude: /(node_modules|bower_components)/,
 
         // use babel to compile for all js files
         loader: 'babel-loader'

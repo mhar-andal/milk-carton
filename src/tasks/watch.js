@@ -7,6 +7,7 @@ const watchFiles = [
   './objects/**/*.js',
   './test/**/*',
   './package.json',
+  './gulpfile.babel.js',
   './**/.eslintrc',
   '.jscsrc',
 
