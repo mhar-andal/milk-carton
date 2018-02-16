@@ -13,7 +13,7 @@ exports.default = function (gulp, config) {
 var dependencies = exports.dependencies = [];
 
 // files to watch
-var watchFiles = ['./src/**/*', './objects/**/*.js', './test/**/*', './package.json', './gulpfile.babel.js', './**/.eslintrc', '.jscsrc',
+var watchFiles = ['./src/**/*', './objects/**/*.js', './test/**/*', './package.json', './gulpfile.babel.js', './**/.eslintrc',
 
 // ignore
 '!./src/objects.js'];

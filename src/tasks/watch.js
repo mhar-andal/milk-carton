@@ -9,7 +9,6 @@ const watchFiles = [
   './package.json',
   './gulpfile.babel.js',
   './**/.eslintrc',
-  '.jscsrc',
 
   // ignore
   '!./src/objects.js'

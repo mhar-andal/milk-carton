@@ -32,9 +32,6 @@ export default {
     ]
   },
 
-  // webpack modules directory
-  modulesDirectories: null,
-
   // webpack library type
   libraryTarget: 'amd',
 
@@ -45,6 +42,9 @@ export default {
   clean: ['dist', 'tmp'],
 
   // dependencies to be appended to existing tasks
-  dependencies: []
+  dependencies: [],
+
+  // added rules to be processed
+  rules: []
 
 };

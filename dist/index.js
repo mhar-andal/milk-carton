@@ -29,6 +29,15 @@ exports.default = function (gulp, options) {
     // create gulp task
     gulp.task(name, deps, fn);
   });
+
+  // Run a server to load manual or unit tests in the browser
+  gulp.task('server', ['build', 'test-browser', 'start-server', 'watch']);
+
+  // alias for server
+  gulp.task('s', ['server']);
+
+  // An alias of test
+  gulp.task('default', ['test']);
 };
 
 var _fs = require('fs');

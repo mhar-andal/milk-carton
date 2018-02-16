@@ -10,12 +10,12 @@ exports.default = function (gulp, config) {
   // should individually load up pieces of our application.
   // We also include the browser setup file.
   var allFiles = ['./test/setup/browser.js'].concat(_glob2.default.sync('./test/unit/**/*.js'));
+  // const unitTestFiles = glob.sync('./test/unit/**/*.js');
+  // const manualTestFiles = glob.sync('./test/manual/**/*.js');
+  // const allFiles = ['./test/setup/browser.js', './test/setup/manual.js'].concat(manualTestFiles); //concat(unitTestFiles)
 
   // start server
-  _gulpConnect2.default.server({
-    root: './',
-    livereload: true
-  });
+  // server();
 
   // This empty stream might seem like a hack, but we need to specify all of our files through
   // the `entry` option of webpack. Otherwise, it ignores whatever file(s) are placed in here.
@@ -72,7 +72,5 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 // dependencies will be run prior to the default task
 var dependencies = exports.dependencies = [];
-
-var firstBuild = true;
 
 // default task

@@ -17,6 +17,39 @@ exports.default = function (gulp, config) {
   // determine the initial source file
   var sourceFile = _path2.default.join(config.paths.src, config.entryFileName + '.js');
 
+  // webpack rules
+  var rules = [{
+
+    // all javascript files
+    test: /\.js$/,
+
+    // don't include node modules or bower components
+    exclude: /(node_modules|bower_components)/,
+
+    // use babel to compile for all js files
+    loader: 'babel-loader'
+
+    // options: {
+    //   cacheDirectory: true,
+    //   sourceRoot: '@game'
+    // }
+
+  }, {
+
+    // all json files for configuration
+    test: /\.json$/,
+
+    // exclude node modules or bower components
+    exclude: /(node_modules|bower_components)/,
+
+    // https://github.com/webpack-contrib/json-loader
+    loader: 'json-loader'
+
+  }]
+
+  // append custom rules
+  .concat(config.rules);
+
   // webpack options
   var options = {
 
@@ -40,35 +73,8 @@ exports.default = function (gulp, config) {
 
     },
 
-    module: {
-      loaders: [{
-
-        // all javascript files
-        test: /\.js$/,
-
-        // don't include node modules or bower components
-        exclude: /(node_modules|bower_components)/,
-
-        // use babel to compile for all js files
-        loader: 'babel-loader'
-
-      }, {
-
-        // all json files for configuration
-        test: /\.json$/,
-
-        // exclude node modules or bower components
-        exclude: /(node_modules|bower_components)/,
-
-        // https://github.com/webpack-contrib/json-loader
-        loader: 'json-loader'
-
-      }]
-    },
-
-    resolve: {
-      modulesDirectories: config.modulesDirectories
-    },
+    // rules
+    module: { rules: rules },
 
     // enable source-maps
     devtool: 'source-map'
