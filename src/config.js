@@ -1,16 +1,21 @@
+let {name, version} = require(`${process.cwd()}/package.json`);
+
 export default {
 
   // initial file within the src folder
   entryFileName: 'index',
 
+  // version of the project
+  version: version,
+
   // production file name
-  exportFileName: 'build',
+  exportFileName: name,
 
   // create filename from manifest
-  mainVarName: 'library',
+  mainVarName: name, //.charAt(0).toUpperCase() + name.slice(1),
 
   // final destination
-  mainFile: 'dist/library.js',
+  mainFile: `dist/${name}.js`,
 
   // a list of file and directory paths
   paths: {
@@ -32,8 +37,14 @@ export default {
     ]
   },
 
+  // accepted globals to be ignored
+  // globals: mochaGlobals,
+
   // webpack library type
-  libraryTarget: 'amd',
+  libraryTarget: 'umd',
+
+  // name the module
+  umdNamedDefine: true,
 
   // test reporter
   reporter: 'dot',
@@ -44,7 +55,7 @@ export default {
   // dependencies to be appended to existing tasks
   dependencies: [],
 
-  // added rules to be processed
+  // added webpack rules to be processed
   rules: []
 
 };

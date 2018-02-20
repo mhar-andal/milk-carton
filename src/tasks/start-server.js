@@ -8,7 +8,11 @@ export default function(gulp, config) {
 
   // configuration based on initial build or not
   let startOrReload = firstBuild ? 'server' : 'reload';
-  let options = firstBuild ? {livereload: true} : null;
+  let options = firstBuild ? {
+    root: process.cwd(),
+    debug: true,
+    livereload: true
+  } : null;
 
   // start or reload the server
   connect[startOrReload](options);

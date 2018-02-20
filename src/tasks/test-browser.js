@@ -12,13 +12,9 @@ export default function(gulp, config) {
   // Our testing bundle is made up of our unit tests, which
   // should individually load up pieces of our application.
   // We also include the browser setup file.
-  const allFiles = ['./test/setup/browser.js'].concat(glob.sync('./test/unit/**/*.js'));
-  // const unitTestFiles = glob.sync('./test/unit/**/*.js');
-  // const manualTestFiles = glob.sync('./test/manual/**/*.js');
-  // const allFiles = ['./test/setup/browser.js', './test/setup/manual.js'].concat(manualTestFiles); //concat(unitTestFiles)
-
-  // start server
-  // server();
+  const unitTestFiles = glob.sync('./test/unit/**/*.js');
+  const manualTestFiles = glob.sync('./test/manual/**/*.js');
+  const allFiles = ['./test/setup/browser.js', './test/setup/manual.js'].concat(manualTestFiles).concat(unitTestFiles)
 
   // This empty stream might seem like a hack, but we need to specify all of our files through
   // the `entry` option of webpack. Otherwise, it ignores whatever file(s) are placed in here.
@@ -31,7 +27,6 @@ export default function(gulp, config) {
     }))
     .pipe(webpackStream({
       watch: true,
-      verbose: true,
       entry: allFiles,
       output: {
         filename: '__spec-build.js',

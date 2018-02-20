@@ -1,46 +1,52 @@
-import fs from 'fs';
-import path from 'path';
-import defaults from './config';
-// import util from './util';
+#!/usr/bin/env node
 
-// register babel
-import 'babel-register';
+/*
+ *
+ *              ( ) | | | |
+ *   __ __ __       | | | | __
+ *  |  _   _  \ | | | | | |/ /
+ *  | | | | | | | | | | |   <
+ *  |_| |_| |_| |_| |_| |_|\_\
+ *
+ *  ________________________________________________________
+ *
+ *  MILK CARTON
+ *
+ *  A set of command line tools for testing, building, and deploying
+ *  world class JavaScript tools, libraries, and helpers
+ *  Built for and by Codeverse Software Engineers
+ *
+ *  To create a new project
+ *  $ milk new [project-name]
+ *
+ *  More at:
+ *  https://github.com/americademy/milk-carton
+ *
+ *  ________________________________________________________
+ *
+ *  The MIT License
+ *
+ *  Copyright (c) 2016-2018 Americademy, Inc. https://www.americademy.com
+ *
+ *  Permission is hereby granted, free of charge, to any person obtaining a copy
+ *  of this software and associated documentation files (the "Software"), to deal
+ *  in the Software without restriction, including without limitation the rights
+ *  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ *  copies of the Software, and to permit persons to whom the Software is
+ *  furnished to do so, subject to the following conditions:
+ *
+ *  The above copyright notice and this permission notice shall be included in
+ *  all copies or substantial portions of the Software.
+ *
+ *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ *  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ *  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ *  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ *  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ *  THE SOFTWARE.
+ *  ________________________________________________________
+ *
+ */
 
-export default function(gulp, options) {
-
-  // merge configuration
-  let config = Object.assign(defaults, options || {});
-
-  // Grab all the tasks
-  let tasks = fs
-    .readdirSync(path.join(__dirname, 'tasks'))
-    .map(function(file) {
-      return file.replace('.js', '');
-    });
-
-  // Load all the tasks and pass in config
-  tasks.forEach(function(name) {
-    // require gulp task and extract and bind the task function
-    let task = require('./tasks/' + name);
-    let fn = task.default.bind(this, gulp, config);
-    let deps = task.dependencies || [];
-
-    // if we have custom dependencies to append to a task
-    if (config.dependencies[name]) {
-      deps = deps.concat(config.dependencies[name]);
-    }
-
-    // create gulp task
-    gulp.task(name, deps, fn);
-  });
-
-  // Run a server to load manual or unit tests in the browser
-  gulp.task('server', ['build', 'test-browser', 'start-server', 'watch']);
-
-  // alias for server
-  gulp.task('s', ['server']);
-
-  // An alias of test
-  gulp.task('default', ['test']);
-
-};
+import './milk';

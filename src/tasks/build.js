@@ -34,12 +34,7 @@ export default function(gulp, config) {
     exclude: /(node_modules|bower_components)/,
 
     // use babel to compile for all js files
-    loader: 'babel-loader',
-
-    // options: {
-    //   cacheDirectory: true,
-    //   sourceRoot: '@game'
-    // }
+    loader: 'babel-loader'
 
   }, {
 
@@ -71,6 +66,9 @@ export default function(gulp, config) {
 
       // configure the output library type
       libraryTarget: config.libraryTarget,
+
+      // will name the AMD module of the UMD build
+      umdNamedDefine: true,
 
       // configure the output variable
       library: config.mainVarName,
