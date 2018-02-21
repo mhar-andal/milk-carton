@@ -55,7 +55,8 @@ This project is build by and for [Americademy, Inc](https://www.americademy.com/
 
 ## License
 
-```
+```js
+/*
  *  The MIT License
  *
  *  Copyright (c) 2016-2018 Americademy, Inc. https://www.americademy.com
@@ -77,4 +78,5 @@ This project is build by and for [Americademy, Inc](https://www.americademy.com/
  *  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  *  THE SOFTWARE.
+ */
 ```
