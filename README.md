@@ -7,7 +7,7 @@ A task runner to create, develop, test, and deploy code
 
 To install for use in your project:
 
-```
+```sh
 $ npm install -g milk-carton
 ```
 
@@ -36,7 +36,7 @@ see [src/config.js](src/config.js) for all available options.
 To contribute to milk-carton fork this repository and create a pull request with details regarding your proposed changes.
 Requirements: [yarn](https://yarnpkg.com/en/)
 
-```
+```sh
 # Install yarn packages
 $ yarn install
 
