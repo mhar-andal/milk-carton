@@ -34,7 +34,13 @@ export default function(gulp, config) {
     exclude: /(node_modules|bower_components)/,
 
     // use babel to compile for all js files
-    loader: 'babel-loader'
+    loader: 'babel-loader',
+
+    // optimize by caching
+    options: {
+      cacheDirectory: `${process.cwd()}/tmp`,
+      presets: ["env"]
+    }
 
   }, {
 
